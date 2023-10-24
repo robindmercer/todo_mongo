@@ -6,6 +6,7 @@ import {
   taskToggleDone,
   renderTaskEdit,
   editTask,
+  renderTaskFind,
 } from "../controllers/tasks.controllers";
 
 const router = Router();
@@ -18,6 +19,8 @@ router.post("/tasks/add", createTask);
 router.get("/tasks/:id/toggleDone", taskToggleDone);
 
 router.get("/tasks/:id/edit", renderTaskEdit);
+
+router.get("/tasks/find", renderTaskFind);
 
 router.post("/tasks/:id/edit", editTask);
 

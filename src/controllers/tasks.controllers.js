@@ -30,15 +30,25 @@ export const taskToggleDone = async (req, res, next) => {
   res.redirect("/");
 };
 
-export const renderTaskEdit = async (req, res, next) => {
-  const task = await Task.findById(req.params.id).lean();
-  res.render("edit", { task });
-};
-
 export const editTask = async (req, res, next) => {
   const { id } = req.params;
   await Task.updateOne({ _id: id }, req.body);
   res.redirect("/");
+};
+
+export const renderTaskEdit = async (req, res, next) => {
+  const task = await Task.findById(req.params.id).lean();
+  console.log('Edit Task: ', task);
+  res.render("edit", { task });
+};
+
+export const renderTaskFind = async (req, res, next) => {
+  const title = req.query.title
+  var query = { title:title};
+  console.log('req.params.id: ', title);
+  const task = await Task.find(query);
+  console.log('Find Task: ', task);
+  res.render("edit", { task });
 };
 
 export const deleteTask = async (req, res, next) => {
