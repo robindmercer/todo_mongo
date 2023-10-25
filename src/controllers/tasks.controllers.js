@@ -53,6 +53,6 @@ export const renderTaskFind = async (req, res, next) => {
 
 export const deleteTask = async (req, res, next) => {
   let { id } = req.params;
-  await Task.remove({ _id: id });
+  await Task.deleteOne({ _id: id });
   res.redirect("/");
 };
